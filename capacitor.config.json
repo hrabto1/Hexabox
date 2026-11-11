@@ -1,0 +1,12 @@
+{
+  "appId": "com.hexabox.app",
+  "appName": "Hexabox",
+  "webDir": "www",
+  "backgroundColor": "#060910",
+  "android": {
+    "backgroundColor": "#060910"
+  },
+  "ios": {
+    "backgroundColor": "#060910"
+  }
+}

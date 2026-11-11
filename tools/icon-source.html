@@ -1,0 +1,44 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:#060910;}canvas{display:block;}</style></head>
+<body>
+<canvas id="c" width="1024" height="1024"></canvas>
+<script>
+var ctx = document.getElementById('c').getContext('2d');
+function hexPath(x, y, size, rot) {
+  ctx.beginPath();
+  for (var i = 0; i < 6; i++) {
+    var ang = Math.PI / 180 * (60 * i - 30 + (rot || 0));
+    var px = x + size * Math.cos(ang), py = y + size * Math.sin(ang);
+    if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+}
+// background
+var g = ctx.createRadialGradient(512, 420, 80, 512, 512, 760);
+g.addColorStop(0, '#111a2c');
+g.addColorStop(1, '#060910');
+ctx.fillStyle = g;
+ctx.fillRect(0, 0, 1024, 1024);
+
+// outer glow ring
+ctx.save();
+hexPath(512, 512, 420);
+ctx.shadowColor = '#3FE1C3';
+ctx.shadowBlur = 60;
+ctx.fillStyle = '#3FE1C3';
+ctx.fill();
+ctx.restore();
+
+// inner cutout
+hexPath(512, 512, 300);
+ctx.fillStyle = '#0B1018';
+ctx.fill();
+
+// small accent hex (violet) bottom-right of inner, like a gem
+ctx.save();
+ctx.translate(512, 512);
+hexPath(80, 70, 110);
+ctx.fillStyle = '#B47CFF';
+ctx.fill();
+ctx.restore();
+</script>
+</body></html>

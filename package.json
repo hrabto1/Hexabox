@@ -1,0 +1,20 @@
+{
+  "name": "hexabox",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hexabox - hexagonalni puzzle hra",
+  "scripts": {
+    "sync-web": "node tools/sync-web.js",
+    "cap:sync": "npm run sync-web && npx cap sync"
+  },
+  "dependencies": {
+    "@capacitor-community/admob": "^8.3.0",
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/core": "^8.6.0",
+    "@capacitor/ios": "^8.6.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^4.0.0",
+    "@capacitor/cli": "^8.6.0"
+  }
+}
