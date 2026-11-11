@@ -72,6 +72,18 @@
   }
   var progress = loadProgress();
 
+  var SETTINGS_KEY = "hexabox_settings_v1";
+  function loadSettings() {
+    try { return JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {}; } catch (e) { return {}; }
+  }
+  function saveSettings(s) {
+    try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(s)); } catch (e) { /* ignore */ }
+  }
+  var settings = loadSettings();
+  function applyReduceMotion() {
+    stageEl.classList.toggle("reduce-motion", !!settings.reduceMotion);
+  }
+
   function getMeta() {
     if (!progress._meta) progress._meta = { coins: 0, ownedSkins: ["default"], activeSkin: "default" };
     if (!progress._meta.ownedSkins) progress._meta.ownedSkins = ["default"];
@@ -91,8 +103,16 @@
   function isUnlocked(id) { return id === 1 || totalStars() >= unlockThreshold(id); }
   function starsFor(id) { return progress[id] ? progress[id].stars : 0; }
 
+  var stageEl = document.getElementById("stage");
+  var viewMenu = document.getElementById("view-menu");
   var viewSelect = document.getElementById("view-select");
   var viewGame = document.getElementById("view-game");
+  var menuEndlessBestEl = document.getElementById("menuEndlessBest");
+  var settingsModal = document.getElementById("settingsModal");
+  var chkReduceMotion = document.getElementById("chkReduceMotion");
+  var quitModal = document.getElementById("quitModal");
+  var quitNoteEl = document.getElementById("quitNote");
+  var loadingModal = document.getElementById("loadingModal");
   var levelGrid = document.getElementById("levelGrid");
   var totalStarsEl = document.getElementById("totalStars");
   var canvas = document.getElementById("board");
@@ -119,11 +139,15 @@
     return s;
   }
 
+  function updateTopbar() {
+    totalStarsEl.textContent = "★ " + totalStars() + " / " + (LEVELS.length * 3);
+    coinsEl.textContent = "✦ " + getMeta().coins;
+  }
+
   function renderLevelSelect() {
     levelGrid.innerHTML = "";
     var total = totalStars();
-    totalStarsEl.textContent = "★ " + total + " / " + (LEVELS.length * 3);
-    coinsEl.textContent = "✦ " + getMeta().coins;
+    updateTopbar();
     var nextLocked = LEVELS.filter(function (lv) { return !isUnlocked(lv.id); })[0];
     if (nextLocked) {
       var need = unlockThreshold(nextLocked.id);
@@ -202,11 +226,10 @@
 
   var game = null;
 
-  function startLevel(id) {
-    var def = LEVELS.filter(function (l) { return l.id === id; })[0];
-    if (!def) return;
+  function startGameWithDef(def, isEndless) {
     game = {
       def: def,
+      isEndless: !!isEndless,
       board: def.board,
       teleportPairs: def.teleportPairs,
       tiles: L.cloneTiles(def.tiles),
@@ -223,10 +246,11 @@
       deliveries: L.flattenGoals(def.goal).filter(function (g) { return g.type === "deliver"; })
         .reduce(function (acc, g) { return acc.concat(g.deliveries); }, [])
     };
-    hudTitle.textContent = def.id + ". " + def.title;
+    hudTitle.textContent = isEndless ? ("Endless #" + endlessIndex + " — " + def.title) : (def.id + ". " + def.title);
     hudSub.textContent = def.subtitle;
     moveCountEl.textContent = "0";
     mechChipsEl.innerHTML = def.mechanics.map(function (m) { return '<span class="chip">' + escapeHtml(m) + "</span>"; }).join("");
+    viewMenu.hidden = true;
     viewSelect.hidden = true;
     viewGame.hidden = false;
     winModal.hidden = true;
@@ -235,12 +259,93 @@
     requestAnimationFrame(renderLoop);
   }
 
-  function backToSelect() {
+  function startLevel(id) {
+    var def = LEVELS.filter(function (l) { return l.id === id; })[0];
+    if (!def) return;
+    startGameWithDef(def, false);
+  }
+
+  function showMenu() {
     game = null;
+    viewGame.hidden = true;
+    viewSelect.hidden = true;
+    viewMenu.hidden = false;
+    updateTopbar();
+    updateMenuStats();
+    if (window.HexaboxAds) window.HexaboxAds.showBannerOnSelect();
+  }
+
+  function updateMenuStats() {
+    var best = getMeta().endlessBest || 0;
+    menuEndlessBestEl.hidden = !best;
+    if (best) menuEndlessBestEl.textContent = "Nejdelš\xED endless běh: " + best + " \xFArovn\xED";
+  }
+
+  function showCampaignSelect() {
+    viewMenu.hidden = true;
     viewGame.hidden = true;
     viewSelect.hidden = false;
     renderLevelSelect();
     if (window.HexaboxAds) window.HexaboxAds.showBannerOnSelect();
+  }
+
+  function backToSelect() {
+    game = null;
+    viewGame.hidden = true;
+    showCampaignSelect();
+  }
+
+  // ===================== Endless mode =====================
+  // Generates levels on the fly in the browser using the same template +
+  // verify pipeline that builds the 100-level campaign (see levelgen.js) —
+  // "procedurally generated" means "guaranteed solvable" here too, not a
+  // weaker on-device shortcut.
+  var endlessIndex = 0; // which endless level is currently active (1-based)
+
+  function endlessTierFor(n) { return Math.min(9, Math.floor((n - 1) / 3)); }
+
+  function generateEndlessLevel(n) {
+    var Gen = window.HexGen;
+    var tmpl = Gen.TEMPLATES[(n - 1) % Gen.TEMPLATES.length];
+    var tier = endlessTierFor(n);
+    for (var attempt = 0; attempt < 5; attempt++) {
+      var seed = Math.floor(Math.random() * 4294967295);
+      var spec = tmpl(tier, seed);
+      spec.id = "endless-" + n;
+      try { return Gen.finalizeLevel(spec); } catch (e) { /* reroll with a fresh seed */ }
+    }
+    // Last resort: the same template at a gentler tier is strictly easier to
+    // satisfy, so it's far more likely to find a provably solvable scramble.
+    var fallbackSpec = tmpl(Math.max(0, tier - 3), Math.floor(Math.random() * 4294967295));
+    fallbackSpec.id = "endless-" + n;
+    return Gen.finalizeLevel(fallbackSpec);
+  }
+
+  function startEndlessRun() {
+    goToEndlessLevel(1);
+  }
+
+  function goToEndlessLevel(n) {
+    loadingModal.hidden = false;
+    // Let the loading overlay actually paint before the (synchronous —
+    // typically well under a second, but can run a real search internally)
+    // generation blocks the main thread.
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        var def;
+        try {
+          def = generateEndlessLevel(n);
+        } catch (e) {
+          loadingModal.hidden = true;
+          window.alert("Nepodařilo se vygenerovat další úroveň. Zkus to znovu.");
+          showMenu();
+          return;
+        }
+        loadingModal.hidden = true;
+        endlessIndex = n;
+        startGameWithDef(def, true);
+      });
+    });
   }
 
   function resetLevel() {
@@ -474,25 +579,38 @@
   function onWin() {
     var par = game.def.par;
     var stars = game.moves <= par ? 3 : (game.moves <= par + 3 ? 2 : 1);
-    var prev = progress[game.def.id];
-    var bestStars = Math.max(stars, prev ? prev.stars : 0);
-    var bestMoves = prev ? Math.min(prev.bestMoves, game.moves) : game.moves;
-    progress[game.def.id] = { stars: bestStars, bestMoves: bestMoves };
-    var reward = prev ? 2 : (10 + stars * 8);
     // A small, transparent chance of a surprise bonus — an unpredictable
     // reward on top of the guaranteed one reads as a nice surprise rather
     // than a manipulative drip-feed, since the base reward never depends on it.
-    var bonus = 0;
-    if (Math.random() < 0.15) bonus = 5 + Math.floor(Math.random() * 11);
-    getMeta().coins += reward + bonus;
-    saveProgress(progress);
+    var reward, bonus = 0;
+    if (game.isEndless) {
+      // Endless levels are never replayed (a fresh one is generated every
+      // time), so there's no "first clear" bonus or per-level best to track —
+      // just a flat, repeatable reward plus the run-length high score.
+      reward = 6 + stars * 4;
+      if (Math.random() < 0.15) bonus = 3 + Math.floor(Math.random() * 7);
+      getMeta().coins += reward + bonus;
+      var meta = getMeta();
+      if (endlessIndex > (meta.endlessBest || 0)) meta.endlessBest = endlessIndex;
+      saveProgress(progress);
+    } else {
+      var prev = progress[game.def.id];
+      var bestStars = Math.max(stars, prev ? prev.stars : 0);
+      var bestMoves = prev ? Math.min(prev.bestMoves, game.moves) : game.moves;
+      progress[game.def.id] = { stars: bestStars, bestMoves: bestMoves };
+      reward = prev ? 2 : (10 + stars * 8);
+      if (Math.random() < 0.15) bonus = 5 + Math.floor(Math.random() * 11);
+      getMeta().coins += reward + bonus;
+      saveProgress(progress);
+    }
+    updateTopbar();
     modalStars.innerHTML = renderStarsHtml(stars);
     var msg = "Vyřešeno na " + game.moves + " tahů (par " + par + "). +" + reward + " ✦";
     if (bonus) msg += " a bonus +" + bonus + " ✦!";
-    else if (stars < 3 && game.moves - par <= 2) msg += " Jen o " + (game.moves - par) + " tah" + (game.moves - par === 1 ? "" : "y") + " víc pro 3 ★!";
+    else if (!game.isEndless && stars < 3 && game.moves - par <= 2) msg += " Jen o " + (game.moves - par) + " tah" + (game.moves - par === 1 ? "" : "y") + " víc pro 3 ★!";
     modalMoves.textContent = msg;
     var btnNext = document.getElementById("btnNext");
-    btnNext.textContent = game.def.id < LEVELS.length ? "Dalš\xED \xFAroveň" : "Zpět na mapu";
+    btnNext.textContent = game.isEndless ? "Další úroveň" : (game.def.id < LEVELS.length ? "Dalš\xED \xFAroveň" : "Zpět na mapu");
     winModal.hidden = false;
     spawnConfetti();
     if (window.HexaboxAds) window.HexaboxAds.notifyLevelWon();
@@ -974,12 +1092,15 @@
     requestAnimationFrame(renderLoop);
   }
 
-  document.getElementById("btnBack").addEventListener("click", backToSelect);
+  document.getElementById("btnBack").addEventListener("click", function () {
+    if (game && game.isEndless) showMenu(); else backToSelect();
+  });
   document.getElementById("btnReset").addEventListener("click", resetLevel);
   document.getElementById("btnUndo").addEventListener("click", undo);
   document.getElementById("btnReplay").addEventListener("click", function () { winModal.hidden = true; resetLevel(); });
   document.getElementById("btnNext").addEventListener("click", function () {
     winModal.hidden = true;
+    if (game.isEndless) { goToEndlessLevel(endlessIndex + 1); return; }
     var nextId = game.def.id + 1;
     if (nextId <= LEVELS.length && isUnlocked(nextId)) startLevel(nextId); else backToSelect();
   });
@@ -988,12 +1109,53 @@
   document.getElementById("btnShop").addEventListener("click", function () { renderShop(); shopModal.hidden = false; });
   document.getElementById("btnShopClose").addEventListener("click", function () { shopModal.hidden = true; });
 
+  document.getElementById("btnMenuCampaign").addEventListener("click", showCampaignSelect);
+  document.getElementById("btnMenuEndless").addEventListener("click", startEndlessRun);
+  document.getElementById("btnSelectToMenu").addEventListener("click", showMenu);
+
+  document.getElementById("btnMenuSettings").addEventListener("click", function () {
+    chkReduceMotion.checked = !!settings.reduceMotion;
+    settingsModal.hidden = false;
+  });
+  document.getElementById("btnSettingsClose").addEventListener("click", function () { settingsModal.hidden = true; });
+  chkReduceMotion.addEventListener("change", function () {
+    settings.reduceMotion = chkReduceMotion.checked;
+    saveSettings(settings);
+    applyReduceMotion();
+  });
+  document.getElementById("btnResetProgress").addEventListener("click", function () {
+    if (!window.confirm("Opravdu chceš smazat celý postup, hvězdy, mince i skiny? Tohle se nedá vrátit.")) return;
+    progress = {};
+    saveProgress(progress);
+    applySkin("default");
+    settingsModal.hidden = true;
+    updateTopbar();
+    updateMenuStats();
+    if (!viewSelect.hidden) renderLevelSelect();
+  });
+
+  document.getElementById("btnMenuQuit").addEventListener("click", function () {
+    var isNative = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform();
+    quitNoteEl.textContent = isNative
+      ? "Hra se zavře."
+      : "V prohlížeči nejde hru zavřít automaticky – zavři tuto kartu.";
+    quitModal.hidden = false;
+  });
+  document.getElementById("btnQuitCancel").addEventListener("click", function () { quitModal.hidden = true; });
+  document.getElementById("btnQuitConfirm").addEventListener("click", function () {
+    quitModal.hidden = true;
+    var appPlugin = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App;
+    if (appPlugin && appPlugin.exitApp) { appPlugin.exitApp(); return; }
+    try { window.close(); } catch (e) { /* ignore — browsers block closing tabs they didn't open */ }
+  });
+
   function boot(data) {
     applySkin(getMeta().activeSkin);
+    applyReduceMotion();
     renderLevelSelect();
     if (window.HexaboxAds) window.HexaboxAds.init();
     if (data && data.levelId && isUnlocked(data.levelId)) startLevel(data.levelId);
-    else if (window.HexaboxAds) window.HexaboxAds.showBannerOnSelect();
+    else showMenu();
   }
   if (window.claude && window.claude.hot && window.claude.hot.snapshot) {
     window.claude.hot.snapshot(function () { return { levelId: game ? game.def.id : null }; });

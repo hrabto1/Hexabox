@@ -62,8 +62,15 @@
   .view{ flex:1; min-height:0; display:flex; flex-direction:column; }
   .view[hidden]{ display:none!important; }
 
+  #view-menu{ gap:18px; overflow-y:auto; padding-bottom:8px; }
+  #view-menu h1{ margin:4px 0 0; font-size:1.9rem; font-weight:700; letter-spacing:0.01em; text-wrap:balance; }
+  .menu-buttons{ display:flex; flex-direction:column; gap:10px; margin-top:10px; }
+  .menu-btn{ padding:16px 14px; font-size:1rem; }
+  .endless-best{ margin:0; color:var(--muted); font-size:0.78rem; text-align:center; }
+
   #view-select{ gap:18px; overflow-y:auto; padding-bottom:8px; }
-  #view-select h1{ margin:4px 0 0; font-size:1.9rem; font-weight:700; letter-spacing:0.01em; text-wrap:balance; }
+  .subheader{ display:flex; align-items:center; gap:10px; }
+  .subheader h1{ margin:4px 0 0; font-size:1.9rem; font-weight:700; letter-spacing:0.01em; text-wrap:balance; }
   .tagline{ margin:0; color:var(--muted); font-size:0.92rem; }
   .unlock-progress{ display:flex; flex-direction:column; gap:4px; }
   .unlock-progress-label{ font-size:0.76rem; color:var(--muted); }
@@ -165,6 +172,14 @@
   .skin-status{ font-size:0.74rem; color:var(--accent); font-weight:600; }
   .skin-card .btn{ font-size:0.76rem; padding:7px 8px; }
 
+  .settings-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 16px; font-size:0.88rem; text-align:left; }
+  .settings-row input[type="checkbox"]{ width:19px; height:19px; accent-color:var(--accent); cursor:pointer; flex:none; }
+  #btnResetProgress{ width:100%; margin-bottom:6px; }
+
+  .loading-card{ display:flex; flex-direction:column; align-items:center; gap:14px; padding:26px 24px; }
+  .spinner{ width:30px; height:30px; border-radius:50%; border:3px solid var(--line); border-top-color:var(--accent); animation:spin 0.8s linear infinite; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
   #confettiLayer{ position:absolute; inset:0; overflow:hidden; pointer-events:none; }
   .confetti-piece{
     position:absolute; top:-10%; width:8px; height:14px; opacity:0.9;
@@ -178,7 +193,12 @@
   @media (prefers-reduced-motion:reduce){
     #canvasWrap.shake{ animation:none; }
     .confetti-piece{ animation:none; display:none; }
+    .spinner{ animation:none; }
   }
+  /* Manual override from Settings, on top of the OS-level media query above. */
+  #stage.reduce-motion #canvasWrap.shake{ animation:none; }
+  #stage.reduce-motion .confetti-piece{ animation:none; display:none; }
+  #stage.reduce-motion .spinner{ animation:none; }
 </style>
 
 <div id="stage">
@@ -198,8 +218,23 @@
     </div>
   </header>
 
-  <main id="view-select" class="view">
+  <main id="view-menu" class="view">
     <h1>Hexabox</h1>
+    <p class="tagline">Doveď drahokamy k cíli a propoj trubky.</p>
+    <div class="menu-buttons">
+      <button class="btn primary menu-btn" id="btnMenuCampaign">Kampaň</button>
+      <button class="btn menu-btn" id="btnMenuEndless">Endless mód</button>
+      <button class="btn menu-btn" id="btnMenuSettings">Nastavení</button>
+      <button class="btn menu-btn" id="btnMenuQuit">Konec hry</button>
+    </div>
+    <p class="endless-best" id="menuEndlessBest" hidden></p>
+  </main>
+
+  <main id="view-select" class="view" hidden>
+    <div class="subheader">
+      <button class="icon-btn" id="btnSelectToMenu" aria-label="Zpět do menu">←</button>
+      <h1>Kampaň</h1>
+    </div>
     <p class="tagline">Doveď drahokamy k cíli a propoj trubky. 100 hexagonálních hádanek.</p>
     <div class="unlock-progress" id="unlockProgress" hidden>
       <div class="unlock-progress-label" id="unlockProgressLabel"></div>
@@ -216,6 +251,38 @@
       <div class="modal-actions">
         <button class="btn primary" id="btnShopClose">Zavřít</button>
       </div>
+    </div>
+  </div>
+
+  <div class="modal" id="settingsModal" hidden>
+    <div class="modal-card">
+      <h2>Nastavení</h2>
+      <div class="settings-row">
+        <span>Omezit animace</span>
+        <input type="checkbox" id="chkReduceMotion">
+      </div>
+      <button class="btn" id="btnResetProgress">Resetovat postup hry</button>
+      <div class="modal-actions">
+        <button class="btn primary" id="btnSettingsClose">Zavřít</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="quitModal" hidden>
+    <div class="modal-card">
+      <h2>Opravdu skončit?</h2>
+      <p id="quitNote"></p>
+      <div class="modal-actions">
+        <button class="btn" id="btnQuitCancel">Zpět</button>
+        <button class="btn primary" id="btnQuitConfirm">Ukončit</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="loadingModal" hidden>
+    <div class="modal-card loading-card">
+      <div class="spinner" aria-hidden="true"></div>
+      <p style="margin:0;">Generuji úroveň…</p>
     </div>
   </div>
 
@@ -250,6 +317,7 @@
 </div>
 
 <script src="logic.js"></script>
+<script src="levelgen.js"></script>
 <script src="levels.js"></script>
 <script src="ads.js"></script>
 <script src="app.js"></script>
