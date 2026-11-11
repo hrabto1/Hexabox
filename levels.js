@@ -531,17 +531,17 @@ window.HEXABOX_LEVELS = [
       "0,1": "normal",
       "1,-1": "normal",
       "1,0": "normal",
-      "-7,12": "teleportB",
-      "-7,13": "normal",
-      "-6,11": "normal",
-      "-6,12": "normal",
-      "-6,13": "normal",
-      "-5,11": "normal",
-      "-5,12": "normal"
+      "-4,6": "teleportB",
+      "-4,7": "normal",
+      "-3,5": "normal",
+      "-3,6": "normal",
+      "-3,7": "normal",
+      "-2,5": "normal",
+      "-2,6": "normal"
     },
     "teleportPairs": {
-      "0,-1": "-7,12",
-      "-7,12": "0,-1"
+      "0,-1": "-4,6",
+      "-4,6": "0,-1"
     },
     "tiles": {
       "-1,1": {
@@ -571,7 +571,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-5,11": {
+      "-2,5": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -580,7 +580,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,11": {
+      "-3,5": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -589,7 +589,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-5,12": {
+      "-2,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -598,7 +598,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,13": {
+      "-4,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -616,7 +616,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,12": {
+      "-4,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -640,7 +640,7 @@ window.HEXABOX_LEVELS = [
       "deliveries": [
         {
           "keyId": "A",
-          "target": "-5,12"
+          "target": "-2,6"
         }
       ]
     },
@@ -1551,17 +1551,17 @@ window.HEXABOX_LEVELS = [
       "0,1": "normal",
       "1,-1": "normal",
       "1,0": "normal",
-      "-7,12": "normal",
-      "-7,13": "teleportB",
-      "-6,11": "normal",
-      "-6,12": "normal",
-      "-6,13": "normal",
-      "-5,11": "normal",
-      "-5,12": "normal"
+      "-4,6": "normal",
+      "-4,7": "teleportB",
+      "-3,5": "normal",
+      "-3,6": "normal",
+      "-3,7": "normal",
+      "-2,5": "normal",
+      "-2,6": "normal"
     },
     "teleportPairs": {
-      "0,0": "-7,13",
-      "-7,13": "0,0"
+      "0,0": "-4,7",
+      "-4,7": "0,0"
     },
     "tiles": {
       "-1,0": {
@@ -1591,7 +1591,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,12": {
+      "-4,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -1600,7 +1600,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,11": {
+      "-3,5": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -1618,7 +1618,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,13": {
+      "-3,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -1645,7 +1645,7 @@ window.HEXABOX_LEVELS = [
         "isKey": true,
         "keyId": "A"
       },
-      "-6,12": {
+      "-3,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -1660,7 +1660,7 @@ window.HEXABOX_LEVELS = [
       "deliveries": [
         {
           "keyId": "A",
-          "target": "-5,11"
+          "target": "-2,5"
         },
         {
           "keyId": "B",
@@ -1809,10 +1809,10 @@ window.HEXABOX_LEVELS = [
       "0,1": "normal",
       "1,-1": "normal",
       "1,0": "normal",
-      "-15,30": "source",
-      "-16,30": "normal",
-      "-17,31": "normal",
-      "-18,31": "target"
+      "-2,4": "source",
+      "-3,4": "normal",
+      "-4,5": "normal",
+      "-5,5": "target"
     },
     "teleportPairs": {},
     "tiles": {
@@ -1825,7 +1825,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-16,30": {
+      "-3,4": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -1833,7 +1833,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-17,31": {
+      "-4,5": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -1901,8 +1901,8 @@ window.HEXABOX_LEVELS = [
         },
         {
           "type": "path",
-          "source": "-15,30",
-          "target": "-18,31"
+          "source": "-2,4",
+          "target": "-5,5"
         }
       ]
     },
@@ -2439,17 +2439,17 @@ window.HEXABOX_LEVELS = [
       "0,1": "normal",
       "1,-1": "normal",
       "1,0": "normal",
-      "-7,12": "normal",
-      "-7,13": "normal",
-      "-6,11": "normal",
-      "-6,12": "normal",
-      "-6,13": "teleportB",
-      "-5,11": "normal",
-      "-5,12": "normal"
+      "-4,6": "normal",
+      "-4,7": "normal",
+      "-3,5": "normal",
+      "-3,6": "normal",
+      "-3,7": "teleportB",
+      "-2,5": "normal",
+      "-2,6": "normal"
     },
     "teleportPairs": {
-      "-1,1": "-6,13",
-      "-6,13": "-1,1"
+      "-1,1": "-3,7",
+      "-3,7": "-1,1"
     },
     "tiles": {
       "0,-1": {
@@ -2479,7 +2479,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,12": {
+      "-4,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -2497,7 +2497,7 @@ window.HEXABOX_LEVELS = [
         "isKey": true,
         "keyId": "A"
       },
-      "-5,12": {
+      "-2,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -2515,7 +2515,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,11": {
+      "-3,5": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -2524,7 +2524,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,13": {
+      "-4,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -2533,7 +2533,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,13": {
+      "-3,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -2548,7 +2548,7 @@ window.HEXABOX_LEVELS = [
       "deliveries": [
         {
           "keyId": "A",
-          "target": "-7,13"
+          "target": "-4,7"
         }
       ]
     },
@@ -3459,17 +3459,17 @@ window.HEXABOX_LEVELS = [
       "0,1": "normal",
       "1,-1": "normal",
       "1,0": "normal",
-      "-7,12": "teleportB",
-      "-7,13": "normal",
-      "-6,11": "normal",
-      "-6,12": "normal",
-      "-6,13": "normal",
-      "-5,11": "normal",
-      "-5,12": "normal"
+      "-4,6": "teleportB",
+      "-4,7": "normal",
+      "-3,5": "normal",
+      "-3,6": "normal",
+      "-3,7": "normal",
+      "-2,5": "normal",
+      "-2,6": "normal"
     },
     "teleportPairs": {
-      "-1,1": "-7,12",
-      "-7,12": "-1,1"
+      "-1,1": "-4,6",
+      "-4,6": "-1,1"
     },
     "tiles": {
       "-1,0": {
@@ -3490,7 +3490,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,11": {
+      "-3,5": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -3499,7 +3499,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-5,11": {
+      "-2,5": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -3517,7 +3517,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-5,12": {
+      "-2,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -3535,7 +3535,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,13": {
+      "-3,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -3553,7 +3553,7 @@ window.HEXABOX_LEVELS = [
         "isKey": true,
         "keyId": "A"
       },
-      "-7,13": {
+      "-4,7": {
         "color": "keyB",
         "fixed": false,
         "isPipe": false,
@@ -3568,7 +3568,7 @@ window.HEXABOX_LEVELS = [
       "deliveries": [
         {
           "keyId": "A",
-          "target": "-5,12"
+          "target": "-2,6"
         },
         {
           "keyId": "B",
@@ -3735,12 +3735,12 @@ window.HEXABOX_LEVELS = [
       "0,1": "normal",
       "1,-1": "normal",
       "1,0": "normal",
-      "-15,30": "source",
-      "-15,31": "normal",
-      "-16,32": "normal",
-      "-17,32": "normal",
-      "-18,33": "normal",
-      "-18,34": "target"
+      "-2,4": "source",
+      "-2,5": "normal",
+      "-3,6": "normal",
+      "-4,6": "normal",
+      "-5,7": "normal",
+      "-5,8": "target"
     },
     "teleportPairs": {},
     "tiles": {
@@ -3753,7 +3753,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-15,31": {
+      "-2,5": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -3761,7 +3761,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-16,32": {
+      "-3,6": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -3769,7 +3769,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-17,32": {
+      "-4,6": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -3777,7 +3777,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-18,33": {
+      "-5,7": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -3845,8 +3845,8 @@ window.HEXABOX_LEVELS = [
         },
         {
           "type": "path",
-          "source": "-15,30",
-          "target": "-18,34"
+          "source": "-2,4",
+          "target": "-5,8"
         }
       ]
     },
@@ -4485,20 +4485,20 @@ window.HEXABOX_LEVELS = [
       "0,1": "normal",
       "1,-1": "normal",
       "1,0": "normal",
-      "-7,12": "normal",
-      "-7,13": "normal",
-      "-6,11": "normal",
-      "-6,12": "normal",
-      "-6,13": "normal",
-      "-5,11": "normal",
-      "-5,12": "teleportB"
+      "-4,6": "normal",
+      "-4,7": "normal",
+      "-3,5": "normal",
+      "-3,6": "normal",
+      "-3,7": "normal",
+      "-2,5": "normal",
+      "-2,6": "teleportB"
     },
     "teleportPairs": {
-      "0,-1": "-5,12",
-      "-5,12": "0,-1"
+      "0,-1": "-2,6",
+      "-2,6": "0,-1"
     },
     "tiles": {
-      "-6,11": {
+      "-3,5": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -4525,7 +4525,7 @@ window.HEXABOX_LEVELS = [
         "isKey": true,
         "keyId": "A"
       },
-      "-7,12": {
+      "-4,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -4543,7 +4543,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,12": {
+      "-3,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -4552,7 +4552,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-5,11": {
+      "-2,5": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -4570,7 +4570,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-5,12": {
+      "-2,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -4594,7 +4594,7 @@ window.HEXABOX_LEVELS = [
       "deliveries": [
         {
           "keyId": "A",
-          "target": "-6,13"
+          "target": "-3,7"
         }
       ]
     },
@@ -5508,17 +5508,17 @@ window.HEXABOX_LEVELS = [
       "0,1": "normal",
       "1,-1": "normal",
       "1,0": "teleportA",
-      "-7,12": "teleportB",
-      "-7,13": "normal",
-      "-6,11": "normal",
-      "-6,12": "normal",
-      "-6,13": "normal",
-      "-5,11": "normal",
-      "-5,12": "normal"
+      "-4,6": "teleportB",
+      "-4,7": "normal",
+      "-3,5": "normal",
+      "-3,6": "normal",
+      "-3,7": "normal",
+      "-2,5": "normal",
+      "-2,6": "normal"
     },
     "teleportPairs": {
-      "1,0": "-7,12",
-      "-7,12": "1,0"
+      "1,0": "-4,6",
+      "-4,6": "1,0"
     },
     "tiles": {
       "-1,1": {
@@ -5530,7 +5530,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,13": {
+      "-4,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -5539,7 +5539,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,13": {
+      "-3,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -5548,7 +5548,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-5,12": {
+      "-2,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -5584,7 +5584,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,12": {
+      "-3,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -5602,7 +5602,7 @@ window.HEXABOX_LEVELS = [
         "isKey": true,
         "keyId": "A"
       },
-      "-6,11": {
+      "-3,5": {
         "color": "keyB",
         "fixed": false,
         "isPipe": false,
@@ -5617,7 +5617,7 @@ window.HEXABOX_LEVELS = [
       "deliveries": [
         {
           "keyId": "A",
-          "target": "-6,12"
+          "target": "-3,6"
         },
         {
           "keyId": "B",
@@ -5821,13 +5821,13 @@ window.HEXABOX_LEVELS = [
       "0,1": "normal",
       "1,-1": "normal",
       "1,0": "normal",
-      "-15,30": "source",
-      "-16,31": "normal",
-      "-17,31": "normal",
-      "-18,31": "normal",
-      "-19,31": "normal",
-      "-19,30": "normal",
-      "-18,29": "target"
+      "-3,6": "source",
+      "-4,7": "normal",
+      "-5,7": "normal",
+      "-6,7": "normal",
+      "-7,7": "normal",
+      "-7,6": "normal",
+      "-6,5": "target"
     },
     "teleportPairs": {},
     "tiles": {
@@ -5849,7 +5849,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-16,31": {
+      "-4,7": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -5857,7 +5857,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-17,31": {
+      "-5,7": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 9,
@@ -5865,7 +5865,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-18,31": {
+      "-6,7": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 9,
@@ -5873,7 +5873,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-19,31": {
+      "-7,7": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -5881,7 +5881,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-19,30": {
+      "-7,6": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -5940,8 +5940,8 @@ window.HEXABOX_LEVELS = [
         },
         {
           "type": "path",
-          "source": "-15,30",
-          "target": "-18,29"
+          "source": "-3,6",
+          "target": "-6,5"
         }
       ]
     },
@@ -6592,29 +6592,29 @@ window.HEXABOX_LEVELS = [
       "2,-2": "normal",
       "2,-1": "normal",
       "2,0": "normal",
-      "-10,16": "normal",
-      "-10,17": "normal",
-      "-10,18": "normal",
-      "-9,15": "normal",
-      "-9,16": "normal",
-      "-9,17": "teleportB",
-      "-9,18": "normal",
-      "-8,14": "normal",
-      "-8,15": "normal",
-      "-8,16": "normal",
-      "-8,17": "normal",
-      "-8,18": "normal",
-      "-7,14": "normal",
-      "-7,15": "normal",
-      "-7,16": "normal",
-      "-7,17": "normal",
-      "-6,14": "normal",
-      "-6,15": "normal",
-      "-6,16": "normal"
+      "-6,8": "normal",
+      "-6,9": "normal",
+      "-6,10": "normal",
+      "-5,7": "normal",
+      "-5,8": "normal",
+      "-5,9": "teleportB",
+      "-5,10": "normal",
+      "-4,6": "normal",
+      "-4,7": "normal",
+      "-4,8": "normal",
+      "-4,9": "normal",
+      "-4,10": "normal",
+      "-3,6": "normal",
+      "-3,7": "normal",
+      "-3,8": "normal",
+      "-3,9": "normal",
+      "-2,6": "normal",
+      "-2,7": "normal",
+      "-2,8": "normal"
     },
     "teleportPairs": {
-      "0,2": "-9,17",
-      "-9,17": "0,2"
+      "0,2": "-5,9",
+      "-5,9": "0,2"
     },
     "tiles": {
       "-2,1": {
@@ -6680,7 +6680,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-10,16": {
+      "-6,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6689,7 +6689,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-10,17": {
+      "-6,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6698,7 +6698,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,15": {
+      "-5,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6707,7 +6707,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,14": {
+      "-4,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6716,7 +6716,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,15": {
+      "-2,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6725,7 +6725,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,16": {
+      "-2,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6779,7 +6779,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,14": {
+      "-3,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6797,7 +6797,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-10,18": {
+      "-6,10": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6806,7 +6806,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,16": {
+      "-3,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6824,7 +6824,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,18": {
+      "-5,10": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6833,7 +6833,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,14": {
+      "-2,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6860,7 +6860,7 @@ window.HEXABOX_LEVELS = [
         "isKey": true,
         "keyId": "A"
       },
-      "-9,17": {
+      "-5,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6878,7 +6878,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,15": {
+      "-3,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6887,7 +6887,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,18": {
+      "-4,10": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6896,7 +6896,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,16": {
+      "-4,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -6911,7 +6911,7 @@ window.HEXABOX_LEVELS = [
       "deliveries": [
         {
           "keyId": "A",
-          "target": "-7,16"
+          "target": "-3,8"
         }
       ]
     },
@@ -7838,29 +7838,29 @@ window.HEXABOX_LEVELS = [
       "2,-2": "normal",
       "2,-1": "normal",
       "2,0": "normal",
-      "-10,16": "normal",
-      "-10,17": "normal",
-      "-10,18": "normal",
-      "-9,15": "normal",
-      "-9,16": "normal",
-      "-9,17": "normal",
-      "-9,18": "teleportB",
-      "-8,14": "normal",
-      "-8,15": "normal",
-      "-8,16": "normal",
-      "-8,17": "normal",
-      "-8,18": "normal",
-      "-7,14": "normal",
-      "-7,15": "normal",
-      "-7,16": "normal",
-      "-7,17": "normal",
-      "-6,14": "normal",
-      "-6,15": "normal",
-      "-6,16": "normal"
+      "-6,8": "normal",
+      "-6,9": "normal",
+      "-6,10": "normal",
+      "-5,7": "normal",
+      "-5,8": "normal",
+      "-5,9": "normal",
+      "-5,10": "teleportB",
+      "-4,6": "normal",
+      "-4,7": "normal",
+      "-4,8": "normal",
+      "-4,9": "normal",
+      "-4,10": "normal",
+      "-3,6": "normal",
+      "-3,7": "normal",
+      "-3,8": "normal",
+      "-3,9": "normal",
+      "-2,6": "normal",
+      "-2,7": "normal",
+      "-2,8": "normal"
     },
     "teleportPairs": {
-      "1,1": "-9,18",
-      "-9,18": "1,1"
+      "1,1": "-5,10",
+      "-5,10": "1,1"
     },
     "tiles": {
       "-2,0": {
@@ -7944,7 +7944,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-10,16": {
+      "-6,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -7953,7 +7953,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-10,18": {
+      "-6,10": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -7962,7 +7962,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,15": {
+      "-5,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -7971,7 +7971,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,16": {
+      "-5,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -7980,7 +7980,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,14": {
+      "-4,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -7989,7 +7989,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,16": {
+      "-4,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -7998,7 +7998,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,16": {
+      "-3,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -8007,7 +8007,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,15": {
+      "-2,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -8016,7 +8016,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,16": {
+      "-2,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -8025,7 +8025,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,14": {
+      "-3,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -8034,7 +8034,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,15": {
+      "-4,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -8079,7 +8079,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,15": {
+      "-3,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -8115,7 +8115,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-10,17": {
+      "-6,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -8124,7 +8124,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,18": {
+      "-4,10": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -8133,7 +8133,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,17": {
+      "-3,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -8142,7 +8142,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,17": {
+      "-5,9": {
         "color": "keyB",
         "fixed": false,
         "isPipe": false,
@@ -8157,7 +8157,7 @@ window.HEXABOX_LEVELS = [
       "deliveries": [
         {
           "keyId": "A",
-          "target": "-10,17"
+          "target": "-6,9"
         },
         {
           "keyId": "B",
@@ -8379,14 +8379,14 @@ window.HEXABOX_LEVELS = [
       "0,1": "normal",
       "1,-1": "normal",
       "1,0": "normal",
-      "-15,30": "source",
-      "-15,31": "normal",
-      "-15,32": "normal",
-      "-15,33": "normal",
-      "-16,34": "normal",
-      "-17,35": "normal",
-      "-18,36": "normal",
-      "-19,36": "target"
+      "-2,4": "source",
+      "-2,5": "normal",
+      "-2,6": "normal",
+      "-2,7": "normal",
+      "-3,8": "normal",
+      "-4,9": "normal",
+      "-5,10": "normal",
+      "-6,10": "target"
     },
     "teleportPairs": {},
     "tiles": {
@@ -8408,7 +8408,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-15,31": {
+      "-2,5": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 9,
@@ -8416,7 +8416,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-15,32": {
+      "-2,6": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 9,
@@ -8424,7 +8424,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-15,33": {
+      "-2,7": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -8432,7 +8432,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-16,34": {
+      "-3,8": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 9,
@@ -8440,7 +8440,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-17,35": {
+      "-4,9": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 9,
@@ -8448,7 +8448,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-18,36": {
+      "-5,10": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -8507,8 +8507,8 @@ window.HEXABOX_LEVELS = [
         },
         {
           "type": "path",
-          "source": "-15,30",
-          "target": "-19,36"
+          "source": "-2,4",
+          "target": "-6,10"
         }
       ]
     },
@@ -9150,29 +9150,29 @@ window.HEXABOX_LEVELS = [
       "2,-2": "normal",
       "2,-1": "normal",
       "2,0": "normal",
-      "-10,16": "normal",
-      "-10,17": "normal",
-      "-10,18": "normal",
-      "-9,15": "normal",
-      "-9,16": "teleportB",
-      "-9,17": "normal",
-      "-9,18": "normal",
-      "-8,14": "normal",
-      "-8,15": "normal",
-      "-8,16": "normal",
-      "-8,17": "normal",
-      "-8,18": "normal",
-      "-7,14": "normal",
-      "-7,15": "normal",
-      "-7,16": "normal",
-      "-7,17": "normal",
-      "-6,14": "normal",
-      "-6,15": "normal",
-      "-6,16": "normal"
+      "-6,8": "normal",
+      "-6,9": "normal",
+      "-6,10": "normal",
+      "-5,7": "normal",
+      "-5,8": "teleportB",
+      "-5,9": "normal",
+      "-5,10": "normal",
+      "-4,6": "normal",
+      "-4,7": "normal",
+      "-4,8": "normal",
+      "-4,9": "normal",
+      "-4,10": "normal",
+      "-3,6": "normal",
+      "-3,7": "normal",
+      "-3,8": "normal",
+      "-3,9": "normal",
+      "-2,6": "normal",
+      "-2,7": "normal",
+      "-2,8": "normal"
     },
     "teleportPairs": {
-      "-1,2": "-9,16",
-      "-9,16": "-1,2"
+      "-1,2": "-5,8",
+      "-5,8": "-1,2"
     },
     "tiles": {
       "-2,0": {
@@ -9229,7 +9229,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,15": {
+      "-4,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9238,7 +9238,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,18": {
+      "-4,10": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9247,7 +9247,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,17": {
+      "-3,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9256,7 +9256,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,14": {
+      "-2,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9265,7 +9265,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,15": {
+      "-2,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9274,7 +9274,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,16": {
+      "-2,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9283,7 +9283,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-10,18": {
+      "-6,10": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9292,7 +9292,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-10,16": {
+      "-6,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9337,7 +9337,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-10,17": {
+      "-6,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9346,7 +9346,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,15": {
+      "-5,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9355,7 +9355,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,14": {
+      "-4,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9364,7 +9364,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,16": {
+      "-5,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9391,7 +9391,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,16": {
+      "-4,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9427,7 +9427,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,14": {
+      "-3,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9436,7 +9436,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,17": {
+      "-5,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -9469,7 +9469,7 @@ window.HEXABOX_LEVELS = [
       "deliveries": [
         {
           "keyId": "A",
-          "target": "-8,17"
+          "target": "-4,9"
         }
       ]
     },
@@ -10387,29 +10387,29 @@ window.HEXABOX_LEVELS = [
       "2,-2": "normal",
       "2,-1": "normal",
       "2,0": "normal",
-      "-10,16": "normal",
-      "-10,17": "teleportB",
-      "-10,18": "normal",
-      "-9,15": "normal",
-      "-9,16": "normal",
-      "-9,17": "normal",
-      "-9,18": "normal",
-      "-8,14": "normal",
-      "-8,15": "normal",
-      "-8,16": "normal",
-      "-8,17": "normal",
-      "-8,18": "normal",
-      "-7,14": "normal",
-      "-7,15": "normal",
-      "-7,16": "normal",
-      "-7,17": "normal",
-      "-6,14": "normal",
-      "-6,15": "normal",
-      "-6,16": "normal"
+      "-6,8": "normal",
+      "-6,9": "teleportB",
+      "-6,10": "normal",
+      "-5,7": "normal",
+      "-5,8": "normal",
+      "-5,9": "normal",
+      "-5,10": "normal",
+      "-4,6": "normal",
+      "-4,7": "normal",
+      "-4,8": "normal",
+      "-4,9": "normal",
+      "-4,10": "normal",
+      "-3,6": "normal",
+      "-3,7": "normal",
+      "-3,8": "normal",
+      "-3,9": "normal",
+      "-2,6": "normal",
+      "-2,7": "normal",
+      "-2,8": "normal"
     },
     "teleportPairs": {
-      "1,-2": "-10,17",
-      "-10,17": "1,-2"
+      "1,-2": "-6,9",
+      "-6,9": "1,-2"
     },
     "tiles": {
       "-2,1": {
@@ -10520,7 +10520,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,18": {
+      "-4,10": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -10529,7 +10529,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,14": {
+      "-3,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -10538,7 +10538,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,15": {
+      "-3,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -10547,7 +10547,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,14": {
+      "-2,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -10556,7 +10556,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,15": {
+      "-2,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -10565,7 +10565,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,14": {
+      "-4,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -10583,7 +10583,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,16": {
+      "-2,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -10592,7 +10592,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,15": {
+      "-5,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -10619,7 +10619,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,16": {
+      "-3,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -10628,7 +10628,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-10,18": {
+      "-6,10": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -10637,7 +10637,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,17": {
+      "-3,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -10646,7 +10646,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,16": {
+      "-4,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -10673,7 +10673,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,17": {
+      "-5,9": {
         "color": "keyB",
         "fixed": false,
         "isPipe": false,
@@ -10682,7 +10682,7 @@ window.HEXABOX_LEVELS = [
         "isKey": true,
         "keyId": "B"
       },
-      "-9,16": {
+      "-5,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -10706,7 +10706,7 @@ window.HEXABOX_LEVELS = [
       "deliveries": [
         {
           "keyId": "A",
-          "target": "-7,17"
+          "target": "-3,9"
         },
         {
           "keyId": "B",
@@ -10946,15 +10946,15 @@ window.HEXABOX_LEVELS = [
       "0,1": "normal",
       "1,-1": "normal",
       "1,0": "normal",
-      "-15,30": "source",
-      "-16,31": "normal",
-      "-17,31": "normal",
-      "-18,31": "normal",
-      "-18,30": "normal",
-      "-19,30": "normal",
-      "-20,30": "normal",
-      "-21,31": "normal",
-      "-22,31": "target"
+      "-2,4": "source",
+      "-3,5": "normal",
+      "-4,5": "normal",
+      "-5,5": "normal",
+      "-5,4": "normal",
+      "-6,4": "normal",
+      "-7,4": "normal",
+      "-8,5": "normal",
+      "-9,5": "target"
     },
     "teleportPairs": {},
     "tiles": {
@@ -10976,7 +10976,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-16,31": {
+      "-3,5": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -10984,7 +10984,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-17,31": {
+      "-4,5": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 9,
@@ -10992,7 +10992,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-18,31": {
+      "-5,5": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -11000,7 +11000,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-18,30": {
+      "-5,4": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -11008,7 +11008,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-19,30": {
+      "-6,4": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 9,
@@ -11016,7 +11016,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-20,30": {
+      "-7,4": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -11024,7 +11024,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-21,31": {
+      "-8,5": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -11083,8 +11083,8 @@ window.HEXABOX_LEVELS = [
         },
         {
           "type": "path",
-          "source": "-15,30",
-          "target": "-22,31"
+          "source": "-2,4",
+          "target": "-9,5"
         }
       ]
     },
@@ -12266,29 +12266,29 @@ window.HEXABOX_LEVELS = [
       "2,-2": "normal",
       "2,-1": "normal",
       "2,0": "normal",
-      "-10,16": "normal",
-      "-10,17": "normal",
-      "-10,18": "normal",
-      "-9,15": "normal",
-      "-9,16": "normal",
-      "-9,17": "normal",
-      "-9,18": "normal",
-      "-8,14": "normal",
-      "-8,15": "normal",
-      "-8,16": "normal",
-      "-8,17": "normal",
-      "-8,18": "normal",
-      "-7,14": "normal",
-      "-7,15": "normal",
-      "-7,16": "normal",
-      "-7,17": "normal",
-      "-6,14": "normal",
-      "-6,15": "normal",
-      "-6,16": "teleportB"
+      "-6,8": "normal",
+      "-6,9": "normal",
+      "-6,10": "normal",
+      "-5,7": "normal",
+      "-5,8": "normal",
+      "-5,9": "normal",
+      "-5,10": "normal",
+      "-4,6": "normal",
+      "-4,7": "normal",
+      "-4,8": "normal",
+      "-4,9": "normal",
+      "-4,10": "normal",
+      "-3,6": "normal",
+      "-3,7": "normal",
+      "-3,8": "normal",
+      "-3,9": "normal",
+      "-2,6": "normal",
+      "-2,7": "normal",
+      "-2,8": "teleportB"
     },
     "teleportPairs": {
-      "-2,0": "-6,16",
-      "-6,16": "-2,0"
+      "-2,0": "-2,8",
+      "-2,8": "-2,0"
     },
     "tiles": {
       "-1,-1": {
@@ -12381,7 +12381,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-10,16": {
+      "-6,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12390,7 +12390,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,14": {
+      "-3,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12399,7 +12399,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,14": {
+      "-2,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12408,7 +12408,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,15": {
+      "-2,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12417,7 +12417,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,17": {
+      "-3,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12426,7 +12426,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,17": {
+      "-4,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12435,7 +12435,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,18": {
+      "-4,10": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12444,7 +12444,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,14": {
+      "-4,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12453,7 +12453,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,18": {
+      "-5,10": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12471,7 +12471,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,15": {
+      "-5,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12480,7 +12480,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,15": {
+      "-4,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12489,7 +12489,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,15": {
+      "-3,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12498,7 +12498,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,17": {
+      "-5,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12552,7 +12552,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,16": {
+      "-4,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -12585,7 +12585,7 @@ window.HEXABOX_LEVELS = [
       "deliveries": [
         {
           "keyId": "A",
-          "target": "-10,18"
+          "target": "-6,10"
         }
       ]
     },
@@ -14236,29 +14236,29 @@ window.HEXABOX_LEVELS = [
       "2,-2": "normal",
       "2,-1": "normal",
       "2,0": "normal",
-      "-10,16": "normal",
-      "-10,17": "normal",
-      "-10,18": "normal",
-      "-9,15": "normal",
-      "-9,16": "normal",
-      "-9,17": "normal",
-      "-9,18": "normal",
-      "-8,14": "normal",
-      "-8,15": "normal",
-      "-8,16": "normal",
-      "-8,17": "normal",
-      "-8,18": "teleportB",
-      "-7,14": "normal",
-      "-7,15": "normal",
-      "-7,16": "normal",
-      "-7,17": "normal",
-      "-6,14": "normal",
-      "-6,15": "normal",
-      "-6,16": "normal"
+      "-6,8": "normal",
+      "-6,9": "normal",
+      "-6,10": "normal",
+      "-5,7": "normal",
+      "-5,8": "normal",
+      "-5,9": "normal",
+      "-5,10": "normal",
+      "-4,6": "normal",
+      "-4,7": "normal",
+      "-4,8": "normal",
+      "-4,9": "normal",
+      "-4,10": "teleportB",
+      "-3,6": "normal",
+      "-3,7": "normal",
+      "-3,8": "normal",
+      "-3,9": "normal",
+      "-2,6": "normal",
+      "-2,7": "normal",
+      "-2,8": "normal"
     },
     "teleportPairs": {
-      "-1,-1": "-8,18",
-      "-8,18": "-1,-1"
+      "-1,-1": "-4,10",
+      "-4,10": "-1,-1"
     },
     "tiles": {
       "-1,1": {
@@ -14324,7 +14324,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,15": {
+      "-5,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14333,7 +14333,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,14": {
+      "-4,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14342,7 +14342,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,15": {
+      "-4,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14351,7 +14351,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,14": {
+      "-2,6": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14360,7 +14360,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,16": {
+      "-4,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14378,7 +14378,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,17": {
+      "-4,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14387,7 +14387,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,17": {
+      "-3,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14396,7 +14396,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,16": {
+      "-2,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14432,7 +14432,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,16": {
+      "-3,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14441,7 +14441,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-10,16": {
+      "-6,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14450,7 +14450,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-6,15": {
+      "-2,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14459,7 +14459,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,16": {
+      "-5,8": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14477,7 +14477,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-9,18": {
+      "-5,10": {
         "color": "keyA",
         "fixed": false,
         "isPipe": false,
@@ -14504,7 +14504,7 @@ window.HEXABOX_LEVELS = [
         "isKey": true,
         "keyId": "B"
       },
-      "-10,17": {
+      "-6,9": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14513,7 +14513,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-7,15": {
+      "-3,7": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14531,7 +14531,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-8,18": {
+      "-4,10": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14540,7 +14540,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-10,18": {
+      "-6,10": {
         "color": "obstacle",
         "fixed": false,
         "isPipe": false,
@@ -14555,7 +14555,7 @@ window.HEXABOX_LEVELS = [
       "deliveries": [
         {
           "keyId": "A",
-          "target": "-6,16"
+          "target": "-2,8"
         },
         {
           "keyId": "B",
@@ -14844,17 +14844,17 @@ window.HEXABOX_LEVELS = [
       "2,-2": "normal",
       "2,-1": "normal",
       "2,0": "normal",
-      "-16,32": "source",
-      "-15,32": "normal",
-      "-14,32": "normal",
-      "-14,33": "normal",
-      "-15,34": "normal",
-      "-16,34": "normal",
-      "-17,34": "normal",
-      "-18,35": "normal",
-      "-19,36": "normal",
-      "-20,37": "normal",
-      "-20,38": "target"
+      "-3,6": "source",
+      "-2,6": "normal",
+      "-1,6": "normal",
+      "-1,7": "normal",
+      "-2,8": "normal",
+      "-3,8": "normal",
+      "-4,8": "normal",
+      "-5,9": "normal",
+      "-6,10": "normal",
+      "-7,11": "normal",
+      "-7,12": "target"
     },
     "teleportPairs": {},
     "tiles": {
@@ -14903,7 +14903,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-15,32": {
+      "-2,6": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 9,
@@ -14911,7 +14911,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-14,32": {
+      "-1,6": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -14919,7 +14919,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-14,33": {
+      "-1,7": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -14927,7 +14927,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-15,34": {
+      "-2,8": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -14935,7 +14935,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-16,34": {
+      "-3,8": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 9,
@@ -14943,7 +14943,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-17,34": {
+      "-4,8": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -14951,7 +14951,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-18,35": {
+      "-5,9": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 9,
@@ -14959,7 +14959,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-19,36": {
+      "-6,10": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 9,
@@ -14967,7 +14967,7 @@ window.HEXABOX_LEVELS = [
         "isKey": false,
         "keyId": null
       },
-      "-20,37": {
+      "-7,11": {
         "fixed": false,
         "isPipe": true,
         "pipeMask": 5,
@@ -15098,8 +15098,8 @@ window.HEXABOX_LEVELS = [
         },
         {
           "type": "path",
-          "source": "-16,32",
-          "target": "-20,38"
+          "source": "-3,6",
+          "target": "-7,12"
         }
       ]
     },

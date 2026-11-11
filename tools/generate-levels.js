@@ -563,7 +563,12 @@ function tmplHub(tier, seed) {
 function tmplTeleport(tier, seed) {
   var radius = tier <= 4 ? 1 : 2;
   var cluster1 = L.hexagonArea(radius);
-  var span = radius * 2 + 4;
+  // Smallest span that still leaves a clear (non-adjacent) gap between the
+  // two islands: hexagonArea(radius) spans r in [-radius,radius], and this
+  // shift moves cluster2's r by +2*span, so span=radius+2 leaves exactly two
+  // empty rows between them — close enough to read as one compact board, not
+  // two distant specks with a dead zone between.
+  var span = radius + 2;
   var cluster2 = shiftCellsDown(L.hexagonArea(radius), span);
   var cells = cluster1.concat(cluster2);
   var rng = mulberry32(seed);
@@ -775,7 +780,8 @@ function tmplMultiKey(tier, seed, withWalls, withHub) {
 function tmplMultiKeyTeleport(tier, seed) {
   var radius = tier <= 4 ? 1 : 2;
   var cluster1 = L.hexagonArea(radius);
-  var span = radius * 2 + 4;
+  // See tmplTeleport for why radius+2 is already a clean, non-adjacent gap.
+  var span = radius + 2;
   var cluster2 = shiftCellsDown(L.hexagonArea(radius), span);
   var cells = cluster1.concat(cluster2);
   var rng = mulberry32(seed);
@@ -921,8 +927,17 @@ function tmplCombo(tier, seed) {
   fillObstacles(tilesA, cellsA, emptiesA.concat([targetA]), []);
   var deliverGoal = { type: "deliver", deliveries: [{ keyId: "A", target: targetA }] };
 
-  var SHIFT = radius + 14;
+  // The pipe chamber's own path wanders freely (up to ~10 cells, see
+  // buildPipePath) and can drift to a negative r before ever coming back
+  // down, so a fixed worst-case shift (used to be radius+14, enough to clear
+  // even a path that drifts up for all 10 steps) left a huge dead gap for the
+  // common case where it doesn't. Measure the path's actual lowest row
+  // instead, and shift by just enough to clear cellsA's lowest row plus two
+  // empty rows — same non-adjacency guarantee as tmplTeleport, but sized to
+  // what this specific level actually needs.
   var built = buildPipePath(tier, seed + 13);
+  var minPathR = Math.min.apply(null, built.pathCells.map(function (c) { return c.r; }));
+  var SHIFT = Math.ceil((radius + 3 - minPathR) / 2);
   var pathCellsB = shiftCellsDown(built.pathCells, SHIFT);
   var pathKeysB = built.pathKeys.map(function (k) { return shiftKeyDown(k, SHIFT); });
   var sourceKey = pathKeysB[0], targetKey = pathKeysB[pathKeysB.length - 1];
