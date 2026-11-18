@@ -199,6 +199,21 @@
   #stage.reduce-motion #canvasWrap.shake{ animation:none; }
   #stage.reduce-motion .confetti-piece{ animation:none; display:none; }
   #stage.reduce-motion .spinner{ animation:none; }
+
+  /* Non-blocking milestone feedback (daily reward, level unlocks) — never a
+     modal that demands a dismissal tap, just a toast that announces itself
+     and gets out of the way. Sits above modals too, since a level-unlock
+     toast can fire while the win modal is still open. */
+  #toastLayer{ position:absolute; left:16px; right:16px; bottom:16px; display:flex; flex-direction:column; gap:8px; pointer-events:none; z-index:50; }
+  .toast{
+    background:var(--surface2); border:1px solid var(--line); border-radius:12px;
+    padding:10px 14px; font-size:0.84rem; color:var(--ink); box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    opacity:0; transform:translateY(8px); transition:opacity 0.25s ease, transform 0.25s ease;
+  }
+  .toast.show{ opacity:1; transform:translateY(0); }
+  .toast.streak{ border-color:rgba(255,200,87,0.4); }
+  .toast.unlock{ border-color:rgba(63,225,195,0.4); }
+  #stage.reduce-motion .toast{ transition:opacity 0.15s ease; transform:none; }
 </style>
 
 <div id="stage">
@@ -261,6 +276,14 @@
         <span>Omezit animace</span>
         <input type="checkbox" id="chkReduceMotion">
       </div>
+      <div class="settings-row">
+        <span>Zvuk</span>
+        <input type="checkbox" id="chkSound">
+      </div>
+      <div class="settings-row">
+        <span>Vibrace</span>
+        <input type="checkbox" id="chkHaptics">
+      </div>
       <button class="btn" id="btnResetProgress">Resetovat postup hry</button>
       <div class="modal-actions">
         <button class="btn primary" id="btnSettingsClose">Zavřít</button>
@@ -314,10 +337,14 @@
       </div>
     </div>
   </main>
+
+  <div id="toastLayer"></div>
 </div>
 
 <script src="logic.js"></script>
 <script src="levelgen.js"></script>
 <script src="levels.js"></script>
 <script src="ads.js"></script>
+<script src="audio.js"></script>
+<script src="haptics.js"></script>
 <script src="app.js"></script>

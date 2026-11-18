@@ -83,6 +83,14 @@
   function applyReduceMotion() {
     stageEl.classList.toggle("reduce-motion", !!settings.reduceMotion);
   }
+  // Both default ON (undefined reads as enabled) so existing saves gain
+  // sound/haptics without a migration step.
+  function soundEnabled() { return settings.soundOn !== false; }
+  function hapticsEnabled() { return settings.hapticsOn !== false; }
+  function applyFeedbackSettings() {
+    if (window.HexaboxAudio) window.HexaboxAudio.setMuted(!soundEnabled());
+    if (window.HexaboxHaptics) window.HexaboxHaptics.setEnabled(hapticsEnabled());
+  }
 
   function getMeta() {
     if (!progress._meta) progress._meta = { coins: 0, ownedSkins: ["default"], activeSkin: "default" };
@@ -100,7 +108,8 @@
   // need a genuine 2-star showing on each level behind you, which pushes
   // players to replay and improve rather than just limp through every level.
   function unlockThreshold(id) { return (id - 1) * 2; }
-  function isUnlocked(id) { return id === 1 || totalStars() >= unlockThreshold(id); }
+  function isUnlockedAt(id, total) { return id === 1 || total >= unlockThreshold(id); }
+  function isUnlocked(id) { return isUnlockedAt(id, totalStars()); }
   function starsFor(id) { return progress[id] ? progress[id].stars : 0; }
 
   var stageEl = document.getElementById("stage");
@@ -132,6 +141,59 @@
   var coinsEl = document.getElementById("coinsCount");
   var shopModal = document.getElementById("shopModal");
   var shopGrid = document.getElementById("shopGrid");
+  var toastLayer = document.getElementById("toastLayer");
+
+  // Non-blocking milestone feedback — never a modal the player must dismiss,
+  // just a card that announces itself and fades on its own. Used for the
+  // daily reward and for "you just unlocked a level" so a win's downstream
+  // effects stay visible without stacking more dialogs on the win modal.
+  function showToast(html, variant) {
+    var el = document.createElement("div");
+    el.className = "toast" + (variant ? " " + variant : "");
+    el.innerHTML = html;
+    toastLayer.appendChild(el);
+    requestAnimationFrame(function () { el.classList.add("show"); });
+    setTimeout(function () {
+      el.classList.remove("show");
+      setTimeout(function () { el.remove(); }, 300);
+    }, 3400);
+  }
+
+  function czDayWord(n) { return n === 1 ? "den" : (n >= 2 && n <= 4 ? "dny" : "dní"); }
+
+  // One small, transparent coin reward per calendar day the game is opened —
+  // no login timer, no "come back in Xh or lose your streak" pressure, and
+  // no streak-breaking shame: missing a single day still carries the streak
+  // forward (daysSince <= 2), it only resets after two full days away. The
+  // reward amount is shown plainly in the toast itself, never hidden behind
+  // a mystery box.
+  function checkDailyReward() {
+    var meta = getMeta();
+    var today = new Date();
+    var todayStr = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+    if (meta.lastPlayedDate === todayStr) return;
+    // First session ever: start tracking silently. Announcing a "streak"
+    // before a brand-new player has even seen the main menu would just be
+    // confusing chrome in front of the game itself.
+    if (!meta.lastPlayedDate) {
+      meta.streak = 1;
+      meta.lastPlayedDate = todayStr;
+      saveProgress(progress);
+      return;
+    }
+    var parts = meta.lastPlayedDate.split("-");
+    var prevDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+    var startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    var daysSince = Math.round((startOfToday - prevDate) / 86400000);
+    meta.streak = daysSince > 2 ? 1 : (meta.streak || 1) + 1;
+    meta.lastPlayedDate = todayStr;
+    var reward = 3 + Math.min(meta.streak, 7) * 2;
+    meta.coins += reward;
+    saveProgress(progress);
+    updateTopbar();
+    if (window.HexaboxAudio) window.HexaboxAudio.playCoin();
+    showToast("🔥 Denní odměna — řada: " + meta.streak + " " + czDayWord(meta.streak) + ". +" + reward + " ✦", "streak");
+  }
 
   function renderStarsHtml(n) {
     var s = "";
@@ -210,6 +272,7 @@
         saveProgress(progress);
         renderShop();
         coinsEl.textContent = "✦ " + m.coins;
+        if (window.HexaboxAudio) window.HexaboxAudio.playPurchase();
       });
     });
     shopGrid.querySelectorAll("[data-use]").forEach(function (btn) {
@@ -433,6 +496,13 @@
 
   function currentState() { return { board: game.board, teleportPairs: game.teleportPairs, tiles: game.tiles }; }
 
+  // Browsers only allow an AudioContext to start inside a user gesture —
+  // this catches the very first tap anywhere in the app (menu buttons
+  // included), not just the first tap on the board.
+  document.addEventListener("pointerdown", function () {
+    if (window.HexaboxAudio) window.HexaboxAudio.unlock();
+  }, true);
+
   canvas.addEventListener("pointerdown", function (e) {
     if (!game || game.won) return;
     var rect = canvas.getBoundingClientRect();
@@ -497,11 +567,15 @@
   // understands WHY, instead of wondering why nothing happened.
   function flashBlocked(key) {
     game.blockedFlashes.push({ key: key, start: performance.now(), duration: 650 });
+    if (window.HexaboxAudio) window.HexaboxAudio.playBlocked();
+    if (window.HexaboxHaptics) window.HexaboxHaptics.light();
   }
 
   function flashLocked() {
     canvasWrap.classList.add("shake");
     setTimeout(function () { canvasWrap.classList.remove("shake"); }, 220);
+    if (window.HexaboxAudio) window.HexaboxAudio.playLocked();
+    if (window.HexaboxHaptics) window.HexaboxHaptics.warning();
   }
 
   function pushHistory() {
@@ -520,6 +594,8 @@
     game.tiles = next.tiles;
     game.selected = null; game.highlights = [];
     game.anims.push({ key: destKey, fromX: fromPix.x, fromY: fromPix.y, toX: toPix.x, toY: toPix.y, start: performance.now(), duration: 180 });
+    if (window.HexaboxAudio) window.HexaboxAudio.playSlide();
+    if (window.HexaboxHaptics) window.HexaboxHaptics.light();
     afterMove();
   }
 
@@ -533,6 +609,8 @@
     var now = performance.now();
     game.teleportFlashes.push({ key: fromKey, start: now, duration: 450 });
     game.teleportFlashes.push({ key: toKey, start: now, duration: 450 });
+    if (window.HexaboxAudio) window.HexaboxAudio.playTeleport();
+    if (window.HexaboxHaptics) window.HexaboxHaptics.medium();
     afterMove();
   }
 
@@ -555,6 +633,8 @@
     }
     game.tiles = next.tiles;
     game.selected = null; game.highlights = [];
+    if (window.HexaboxAudio) window.HexaboxAudio.playRotateHub();
+    if (window.HexaboxHaptics) window.HexaboxHaptics.light();
     afterMove();
   }
 
@@ -564,6 +644,7 @@
     if (!next) return;
     pushHistory();
     game.tiles = next.tiles;
+    if (window.HexaboxAudio) window.HexaboxAudio.playRotatePipe();
     afterMove();
   }
 
@@ -594,6 +675,7 @@
       if (endlessIndex > (meta.endlessBest || 0)) meta.endlessBest = endlessIndex;
       saveProgress(progress);
     } else {
+      var totalBefore = totalStars();
       var prev = progress[game.def.id];
       var bestStars = Math.max(stars, prev ? prev.stars : 0);
       var bestMoves = prev ? Math.min(prev.bestMoves, game.moves) : game.moves;
@@ -602,6 +684,16 @@
       if (Math.random() < 0.15) bonus = 5 + Math.floor(Math.random() * 11);
       getMeta().coins += reward + bonus;
       saveProgress(progress);
+      // Clear, immediate feedback for a milestone the player might otherwise
+      // only notice later by scanning the level grid for a newly-lit card.
+      var totalAfter = totalStars();
+      var justUnlocked = LEVELS.filter(function (lv) {
+        return !isUnlockedAt(lv.id, totalBefore) && isUnlockedAt(lv.id, totalAfter);
+      });
+      if (justUnlocked.length) {
+        var extra = justUnlocked.length > 1 ? " (+" + (justUnlocked.length - 1) + " další)" : "";
+        showToast("🔓 Odemčena úroveň " + justUnlocked[0].id + extra + "!", "unlock");
+      }
     }
     updateTopbar();
     modalStars.innerHTML = renderStarsHtml(stars);
@@ -613,6 +705,9 @@
     btnNext.textContent = game.isEndless ? "Další úroveň" : (game.def.id < LEVELS.length ? "Dalš\xED \xFAroveň" : "Zpět na mapu");
     winModal.hidden = false;
     spawnConfetti();
+    if (window.HexaboxAudio) window.HexaboxAudio.playWin(stars);
+    if (window.HexaboxHaptics) window.HexaboxHaptics.success();
+    if (bonus && window.HexaboxAudio) setTimeout(function () { window.HexaboxAudio.playCoin(); }, 260);
     if (window.HexaboxAds) window.HexaboxAds.notifyLevelWon();
   }
 
@@ -1113,8 +1208,12 @@
   document.getElementById("btnMenuEndless").addEventListener("click", startEndlessRun);
   document.getElementById("btnSelectToMenu").addEventListener("click", showMenu);
 
+  var chkSound = document.getElementById("chkSound");
+  var chkHaptics = document.getElementById("chkHaptics");
   document.getElementById("btnMenuSettings").addEventListener("click", function () {
     chkReduceMotion.checked = !!settings.reduceMotion;
+    chkSound.checked = soundEnabled();
+    chkHaptics.checked = hapticsEnabled();
     settingsModal.hidden = false;
   });
   document.getElementById("btnSettingsClose").addEventListener("click", function () { settingsModal.hidden = true; });
@@ -1122,6 +1221,16 @@
     settings.reduceMotion = chkReduceMotion.checked;
     saveSettings(settings);
     applyReduceMotion();
+  });
+  chkSound.addEventListener("change", function () {
+    settings.soundOn = chkSound.checked;
+    saveSettings(settings);
+    applyFeedbackSettings();
+  });
+  chkHaptics.addEventListener("change", function () {
+    settings.hapticsOn = chkHaptics.checked;
+    saveSettings(settings);
+    applyFeedbackSettings();
   });
   document.getElementById("btnResetProgress").addEventListener("click", function () {
     if (!window.confirm("Opravdu chceš smazat celý postup, hvězdy, mince i skiny? Tohle se nedá vrátit.")) return;
@@ -1152,8 +1261,10 @@
   function boot(data) {
     applySkin(getMeta().activeSkin);
     applyReduceMotion();
+    applyFeedbackSettings();
     renderLevelSelect();
     if (window.HexaboxAds) window.HexaboxAds.init();
+    checkDailyReward();
     if (data && data.levelId && isUnlocked(data.levelId)) startLevel(data.levelId);
     else showMenu();
   }
