@@ -3,10 +3,12 @@ build-tools/
 keystore/
 dist/
 www/
+store-assets/
 android/app/build/
 android/build/
 android/.gradle/
 android/local.properties
+android/keystore.properties
 ios/App/Pods/
 ios/App/build/
 *.log

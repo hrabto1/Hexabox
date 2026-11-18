@@ -15,6 +15,15 @@
 // AdMob account's IDs before any real store release.
 (function () {
   "use strict";
+  // Launching ad-free: there's no real AdMob account/ad-unit IDs yet, and
+  // shipping Google's public TEST ad IDs to real Play Store users isn't
+  // allowed by AdMob policy (test ads are for the developer's own test
+  // devices only). The integration below is otherwise complete — flip this
+  // back to true once TEST_IDS is replaced with real IDs from
+  // https://admob.google.com (see NATIVE_APP_README.md) to re-enable ads in
+  // a future update.
+  var ADS_ENABLED = false;
+
   var TEST_IDS = {
     android: { banner: "ca-app-pub-3940256099942544/6300978111", interstitial: "ca-app-pub-3940256099942544/1033173712" },
     ios: { banner: "ca-app-pub-3940256099942544/2934735716", interstitial: "ca-app-pub-3940256099942544/4411468910" }
@@ -35,7 +44,7 @@
   }
 
   function init() {
-    if (!isNative() || !plugin()) return; // web/Artifact: stays ad-free, no-op
+    if (!ADS_ENABLED || !isNative() || !plugin()) return; // web/Artifact and ad-free builds: stays ad-free, no-op
     plugin().initialize({ initializeForTesting: true })
       .then(function () { ready = true; })
       .catch(function () { /* ads are optional — never block the game on this */ });

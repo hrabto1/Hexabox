@@ -1,5 +1,15 @@
 apply plugin: 'com.android.application'
 
+// Release signing credentials live in android/keystore.properties — a local,
+// gitignored file — instead of hardcoded here, so they never end up in git
+// history again. See keystore/DULEZITE-PRECTI.txt for the actual values if
+// that file needs recreating on a new machine.
+def keystorePropsFile = rootProject.file('keystore.properties')
+def keystoreProps = new Properties()
+if (keystorePropsFile.exists()) {
+    keystoreProps.load(new FileInputStream(keystorePropsFile))
+}
+
 android {
     namespace = "com.hexabox.app"
     compileSdk = rootProject.ext.compileSdkVersion
@@ -18,10 +28,12 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file('../../keystore/hexabox-release.keystore')
-            storePassword 'HexaboxRelease2026!'
-            keyAlias 'hexabox'
-            keyPassword 'HexaboxRelease2026!'
+            if (keystorePropsFile.exists()) {
+                storeFile file(keystoreProps['storeFile'])
+                storePassword keystoreProps['storePassword']
+                keyAlias keystoreProps['keyAlias']
+                keyPassword keystoreProps['keyPassword']
+            }
         }
     }
     buildTypes {
